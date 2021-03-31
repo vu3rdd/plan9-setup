@@ -6,11 +6,22 @@ plumber
 fn cd { builtin cd $1 && awd $sysname }
 tabstop=4
 
-#font='/mnt/font/Lucida Grande/15a/font'
-font='/mnt/font/Roboto Regular/14a/font'
-#font='/mnt/font/Noto Sans/13a/font'
+# to get a list of fonts, do '9 9p ls font'
+# see http://swtch.com/plan9port/man/man4/fontsrv.html
+uname=`{uname}
+echo $uname
+if(~ $uname Darwin){
+	font='/mnt/font/Monaco/12a/font'
+	devdrawretina=1
+}
 
-lfont='/mnt/font/Source Code Pro/14a/font'
+if(~ $uname Linux){
+	# font='/mnt/font/InconsolataGo/13a/font'	
+        font='/mnt/font/GoMono/13a/font'
+	# font='/mnt/font/DejaVu Sans/12a/font'
+}
+
+lfont='/mnt/font/InconsolataGo/13a/font'
 
 SHELL=rc
 exec acme -a -f $font -F $lfont $*
